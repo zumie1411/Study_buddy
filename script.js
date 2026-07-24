@@ -292,5 +292,19 @@ ${field.materials}
         window.onload = function() {
             renderFields();
             populateSelects();
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navPanel = document.querySelector('.nav-panel');
+
+            menuToggle.addEventListener('click', () => {
+                const isOpen = navPanel.classList.toggle('is-open');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            });
+
+            navPanel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navPanel.classList.remove('is-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
             // Auto start quiz hint
         };
